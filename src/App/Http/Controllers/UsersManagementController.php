@@ -90,7 +90,9 @@ class UsersManagementController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name'                  => 'required|string|max:255|unique:users',
+            'username'              => 'required|string|max:255|unique:users',
+            'firstname'             => 'required|string|max:255',
+            'lastname'              => 'required|string|max:255',
             'email'                 => 'required|email|max:255|unique:users',
             'password'              => 'required|string|confirmed|min:6',
             'password_confirmation' => 'required|string|same:password',
@@ -101,8 +103,8 @@ class UsersManagementController extends Controller
         }
 
         $messages = [
-            'name.unique'         => trans('laravelusers::laravelusers.messages.userNameTaken'),
-            'name.required'       => trans('laravelusers::laravelusers.messages.userNameRequired'),
+            'username.unique'     => trans('laravelusers::laravelusers.messages.userNameTaken'),
+            'username.required'   => trans('laravelusers::laravelusers.messages.userNameRequired'),
             'email.required'      => trans('laravelusers::laravelusers.messages.emailRequired'),
             'email.email'         => trans('laravelusers::laravelusers.messages.emailInvalid'),
             'password.required'   => trans('laravelusers::laravelusers.messages.passwordRequired'),
@@ -118,9 +120,11 @@ class UsersManagementController extends Controller
         }
 
         $user = config('laravelusers.defaultUserModel')::create([
-            'name'             => $request->input('name'),
-            'email'            => $request->input('email'),
-            'password'         => bcrypt($request->input('password')),
+            'username'          => $request->input('username'),
+            'firstname'         => $request->input('firstname'),
+            'lastname'          => $request->input('lastname'),
+            'email'             => $request->input('email'),
+            'password'          => bcrypt($request->input('password')),
         ]);
 
         if ($this->_rolesEnabled) {
