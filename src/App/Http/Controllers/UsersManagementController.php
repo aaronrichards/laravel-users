@@ -198,7 +198,7 @@ class UsersManagementController extends Controller
         $passwordCheck = $request->input('password') != null;
 
         $rules = [
-            'name' => 'required|max:255',
+            'username' => 'required|max:255',
         ];
 
         if ($emailCheck) {
@@ -289,7 +289,7 @@ class UsersManagementController extends Controller
         }
 
         $results = config('laravelusers.defaultUserModel')::where('id', 'like', $searchTerm.'%')
-                            ->orWhere('name', 'like', $searchTerm.'%')
+                            ->orWhere('username', 'like', $searchTerm.'%')
                             ->orWhere('email', 'like', $searchTerm.'%')->get();
 
         // Attach roles to results
