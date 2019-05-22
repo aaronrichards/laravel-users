@@ -56,7 +56,7 @@ Laravel users can work out the box with or without the following roles packages:
     Laravel 5.6, 5.7, and 5.8+ use:
 
     ```
-        composer require jeremykenedy/laravel-users
+        composer require aaronrichards/laravel-users
     ```
 
     Laravel 5.5 use:
