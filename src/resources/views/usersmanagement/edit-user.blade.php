@@ -215,4 +215,3 @@
         @include('laravelusers::scripts.tooltips')
     @endif
 @endsection
-
