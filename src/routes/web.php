@@ -8,7 +8,7 @@
 */
 
 // APP Routes Below
-Route::group(['middleware' => 'web', 'namespace' => 'jeremykenedy\laravelusers\app\Http\Controllers'], function () {
+Route::group(['middleware' => 'web', 'namespace' => 'aaronrichards\laravelusers\app\Http\Controllers'], function () {
     Route::resource('users', 'UsersManagementController', [
         'names' => [
             'index'   => 'users',
@@ -18,5 +18,5 @@ Route::group(['middleware' => 'web', 'namespace' => 'jeremykenedy\laravelusers\a
 });
 
 Route::middleware(['web', 'auth'])->group(function () {
-    Route::post('search-users', 'jeremykenedy\laravelusers\app\Http\Controllers\UsersManagementController@search')->name('search-users');
+    Route::post('search-users', 'aaronrichards\laravelusers\app\Http\Controllers\UsersManagementController@search')->name('search-users');
 });

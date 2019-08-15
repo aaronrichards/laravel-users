@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\laravelusers;
+namespace aaronrichards\laravelusers;
 
 use Illuminate\Support\Facades\Facade;
 

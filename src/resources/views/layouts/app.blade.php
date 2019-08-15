@@ -14,9 +14,8 @@
         @if(config('laravelusers.enableBootstrapCssCdn'))
             <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.bootstrapCssCdn') }}">
         @endif
-        @if(config('laravelusers.enableAppCss'))
-            <link rel="stylesheet" type="text/css" href="{{ asset(config('laravelusers.appCssPublicFile')) }}">
-        @endif
+        
+        <link rel="stylesheet" type="text/css" href="css/app.css">
 
         @yield('template_linked_css')
 
@@ -51,7 +50,7 @@
                                 <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                                 <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                             @else
-                                <li><a class="nav-link" href="{{ route('users') }}">{!! trans('laravelusers::app.nav.users') !!}</a></li>
+                                <li><a class="nav-link" href="{{ route('users') }}">app.nav.users</a></li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{ Auth::user()->name }} <span class="caret"></span>
@@ -90,7 +89,7 @@
             <script src="{{ asset(config('laravelusers.bootstrapJsCdn')) }}"></script>
         @endif
         @if(config('laravelusers.enableAppJs'))
-            <script src="{{ asset(config('laravelusers.appJsPublicFile')) }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
         @endif
         @include('laravelusers::scripts.toggleText')
 

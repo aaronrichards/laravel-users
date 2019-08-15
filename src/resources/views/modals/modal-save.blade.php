@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    {!! trans('laravelusers::modals.edit_user__modal_text_confirm_title') !!}
+                    edit_user__modal_text_confirm_title
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -12,12 +12,12 @@
             </div>
             <div class="modal-body">
                 <p>
-                    {!! trans('laravelusers::modals.confirm_modal_title_text') !!}
+                    confirm_modal_title_text') !!}
                 </p>
             </div>
             <div class="modal-footer">
-                {!! Form::button('<i class="fa fa-fw '.trans('laravelusers::modals.confirm_modal_button_cancel_icon').'" aria-hidden="true"></i> ' . trans('laravelusers::modals.confirm_modal_button_cancel_text'), array('class' => 'btn btn-outline pull-left btn-flat', 'type' => 'button', 'data-dismiss' => 'modal' )) !!}
-                {!! Form::button('<i class="fa fa-fw '.trans('laravelusers::modals.confirm_modal_button_save_icon').'" aria-hidden="true"></i> ' . trans('laravelusers::modals.confirm_modal_button_save_text'), array('class' => 'btn btn-success pull-right btn-flat', 'type' => 'button', 'id' => 'confirm' )) !!}
+                <button type="button" class="btn btn-outline pull-left btn-flat" data-dismiss="modal">confirm_modal_button_cancel_text</button>
+                <button id="confirm" type="button" class="btn btn-success pull-right btn-flat">confirm_modal_button_save_text</button>
             </div>
         </div>
     </div>

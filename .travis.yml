@@ -22,7 +22,7 @@ before_script:
   - cd laravelusers
   - composer self-update
   - composer install --prefer-source --no-interaction
-  - composer require jeremykenedy/laravel-users
+  - composer require aaronrichards/laravel-users
   - php artisan key:generate
   - php artisan vendor:publish --tag=laravelusers
   - php artisan make:auth

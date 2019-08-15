@@ -1,16 +1,10 @@
 @extends(config('laravelusers.laravelUsersBladeExtended'))
 
 @section('template_title')
-    {!! trans('laravelusers::laravelusers.showing-user', ['name' => $user->name]) !!}
+    showing-user {{$user->name}}
 @endsection
 
 @section('template_linked_css')
-    @if(config('laravelusers.enabledDatatablesJs'))
-        <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.datatablesCssCDN') }}">
-    @endif
-    @if(config('laravelusers.fontAwesomeEnabled'))
-        <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.fontAwesomeCdn') }}">
-    @endif
     @include('laravelusers::partials.styles')
     @include('laravelusers::partials.bs-visibility-css')
 @endsection
@@ -29,13 +23,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            {!! trans('laravelusers::laravelusers.showing-user-title', ['name' => $user->name]) !!}
+                            showing-user-title {{$user->name}}
                             <div class="float-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{!! trans('laravelusers::laravelusers.tooltips.back-users') !!}">
-                                    @if(config('laravelusers.fontAwesomeEnabled'))
-                                        <i class="fas fa-fw fa-reply-all" aria-hidden="true"></i>
-                                    @endif
-                                    {!! trans('laravelusers::laravelusers.buttons.back-to-users') !!}
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="back-users">
+                                    back-to-users
                                 </a>
                             </div>
                         </div>
@@ -45,20 +36,20 @@
                             {{ $user->name }}
                         </h4>
                         @if($user->email)
-                            <p class="text-center" data-toggle="tooltip" data-placement="top" title="{!! trans('laravelusers::laravelusers.tooltips.email-user', ['user' => $user->email]) !!}">
+                            <p class="text-center" data-toggle="tooltip" data-placement="top" title="email-user {{$user->email}}">
                                 {{ Html::mailto($user->email, $user->email) }}
                             </p>
                         @endif
                         <div class="row mb-4">
                             <div class="col-3 offset-3 col-sm-4 offset-sm-2 col-md-4 offset-md-2 col-lg-3 offset-lg-3">
                                 <a href="/users/{{$user->id}}/edit" class="btn btn-block btn-md btn-warning">
-                                    {!! trans('laravelusers::laravelusers.buttons.edit-user') !!}
+                                    edit-user
                                 </a>
                             </div>
                             <div class="col-3 col-sm-4 col-md-4 col-lg-3">
                                 {!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline')) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::button(trans('laravelusers::laravelusers.buttons.delete-user'), array('class' => 'btn btn-danger btn-md btn-block','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
+                                    {!! Form::button('delete-user', array('class' => 'btn btn-danger btn-md btn-block','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -67,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-4 col-sm-3">
                                         <strong>
-                                            {!! trans('laravelusers::laravelusers.show-user.id') !!}
+                                            show-user.id
                                         </strong>
                                     </div>
                                     <div class="col-8 col-sm-9">
@@ -80,7 +71,7 @@
                                     <div class="row">
                                         <div class="col-4 col-sm-3">
                                             <strong>
-                                                {!! trans('laravelusers::laravelusers.show-user.name') !!}
+                                                show-user.name
                                             </strong>
                                         </div>
                                         <div class="col-8 col-sm-9">
@@ -94,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-12 col-sm-3">
                                             <strong>
-                                                {!! trans('laravelusers::laravelusers.show-user.email') !!}
+                                                show-user.email
                                             </strong>
                                         </div>
                                         <div class="col-12 col-sm-9">
@@ -108,7 +99,7 @@
                                     <div class="row">
                                         <div class="col-4 col-sm-3">
                                             <strong>
-                                                {{ trans('laravelusers::laravelusers.show-user.labelRole') }}
+                                                show-user.labelRole
                                             </strong>
                                         </div>
                                         <div class="col-8 col-sm-9">
@@ -131,7 +122,7 @@
                                     <div class="row">
                                         <div class="col-12 col-sm-3">
                                             <strong>
-                                                {!! trans_choice('laravelusers::laravelusers.show-user.labelAccessLevel', 1) !!}
+                                                show-user.labelAccessLevel
                                             </strong>
                                         </div>
                                         <div class="col-12 col-sm-9">
@@ -159,7 +150,7 @@
                                     <div class="row">
                                         <div class="col-4 col-sm-3">
                                             <strong>
-                                                {!! trans('laravelusers::laravelusers.show-user.created') !!}
+                                                show-user.created
                                             </strong>
                                         </div>
                                         <div class="col-8 col-sm-9">
@@ -173,7 +164,7 @@
                                     <div class="row">
                                         <div class="col-4 col-sm-3">
                                             <strong>
-                                                {!! trans('laravelusers::laravelusers.show-user.updated') !!}
+                                                updated
                                             </strong>
                                         </div>
                                         <div class="col-8 col-sm-9">

@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\laravelusers;
+namespace aaronrichards\laravelusers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +22,7 @@ class LaravelUsersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__.'/resources/lang/', $this->_packageTag);
+
     }
 
     /**
@@ -36,8 +36,8 @@ class LaravelUsersServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views/', $this->_packageTag);
         $this->mergeConfigFrom(__DIR__.'/config/'.$this->_packageTag.'.php', $this->_packageTag);
         $this->publishFiles();
-        $this->app->make('jeremykenedy\laravelusers\App\Http\Controllers\UsersManagementController');
-        $this->app->singleton(jeremykenedy\laravelusers\App\Http\Controllers\UsersManagementController\UsersManagementController::class, function () {
+        $this->app->make('aaronrichards\laravelusers\App\Http\Controllers\UsersManagementController');
+        $this->app->singleton(aaronrichards\laravelusers\App\Http\Controllers\UsersManagementController\UsersManagementController::class, function () {
             return new App\Http\Controllers\UsersManagementController();
         });
         $this->app->alias(UsersManagementController::class, 'laravelusers');
@@ -58,10 +58,6 @@ class LaravelUsersServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/'.$this->_packageTag),
-        ], $publishTag);
-
-        $this->publishes([
-            __DIR__.'/resources/lang' => resource_path('lang/vendor/'.$this->_packageTag),
         ], $publishTag);
     }
 }

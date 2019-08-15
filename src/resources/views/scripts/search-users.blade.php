@@ -18,7 +18,7 @@
             usersTable.hide();
             clearSearchTrigger.show();
             let noResulsHtml = '<tr>' +
-                                '<td>{!! trans("laravelusers::laravelusers.search.no-results") !!}</td>' +
+                                '<td>no-results</td>' +
                                 '<td></td>' +
                                 '<td class="hidden-xs"></td>' +
                                 '<td class="hidden-sm hidden-xs"></td>' +
@@ -39,14 +39,12 @@
                         $.each(jsonData, function(index, val) {
                             let rolesHtml = '';
                             let roleClass = '';
-                            let showCellHtml = '<a class="btn btn-sm btn-success btn-block" href="users/' + val.id + '" data-toggle="tooltip" title="{{ trans("laravelusers::laravelusers.tooltips.show") }}">{!! trans("laravelusers::laravelusers.buttons.show") !!}</a>';
-                            let editCellHtml = '<a class="btn btn-sm btn-info btn-block" href="users/' + val.id + '/edit" data-toggle="tooltip" title="{{ trans("laravelusers::laravelusers.tooltips.edit") }}">{!! trans("laravelusers::laravelusers.buttons.edit") !!}</a>';
+                            let showCellHtml = '<a class="btn btn-sm btn-success btn-block" href="users/' + val.id + '" data-toggle="tooltip" title="show>show</a>';
+                            let editCellHtml = '<a class="btn btn-sm btn-info btn-block" href="users/' + val.id + '/edit" data-toggle="tooltip" title="edit"">edit</a>';
                             let deleteCellHtml = '<form method="POST" action="http://laravel.local/users/'+ val.id +'" accept-charset="UTF-8" data-toggle="tooltip" title="Delete">' +
                                     '{!! Form::hidden("_method", "DELETE") !!}' +
                                     '{!! csrf_field() !!}' +
-                                    '<button class="btn btn-danger btn-sm" type="button" style="width: 100%;" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="{{ trans("laravelusers::modals.delete_user_message", ["user" => "'+val.name+'"]) }}">' +
-                                        '{!! trans("laravelusers::laravelusers.buttons.delete") !!}' +
-                                    '</button>' +
+                                    '<button class="btn btn-danger btn-sm" type="button" style="width: 100%;" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="delete_user_message "'+val.name+'">delete</button>' +
                                 '</form>';
 
                             $.each(val.roles, function(roleIndex, role) {
@@ -76,14 +74,14 @@
                     } else {
                         resultsContainer.append(noResulsHtml);
                     };
-                    usersCount.html(jsonData.length + " {!! trans('laravelusers::laravelusers.search.found-footer') !!}");
-                    cardTitle.html("{!! trans('laravelusers::laravelusers.search.title') !!}");
+                    usersCount.html(jsonData.length + " found-footer");
+                    cardTitle.html("search.title");
                 },
                 error: function (response, status, error) {
                     if (response.status === 422) {
                         resultsContainer.append(noResulsHtml);
-                        usersCount.html(0 + " {!! trans('laravelusers::laravelusers.search.found-footer') !!}");
-                        cardTitle.html("{!! trans('laravelusers::laravelusers.search.title') !!}");
+                        usersCount.html(0 + " found-footer");
+                        cardTitle.html("search.title");
                     };
                 },
             });
@@ -95,8 +93,8 @@
                 clearSearchTrigger.hide();
                 resultsContainer.html('');
                 usersTable.show();
-                cardTitle.html("{!! trans('laravelusers::laravelusers.showing-all-users') !!}");
-                usersCount.html("{!! trans_choice('laravelusers::laravelusers.users-table.caption', 1, ['userscount' => $users->count()]) !!}");
+                cardTitle.html("showing-all-users");
+                usersCount.html("users-table.caption ". $users->count());
             };
         });
         clearSearchTrigger.click(function(e) {
@@ -105,8 +103,8 @@
             usersTable.show();
             resultsContainer.html('');
             searchformInput.val('');
-            cardTitle.html("{!! trans('laravelusers::laravelusers.showing-all-users') !!}");
-            usersCount.html("{!! trans_choice('laravelusers::laravelusers.users-table.caption', 1, ['userscount' => $users->count()]) !!}");
+            cardTitle.html("showing-all-users");
+            usersCount.html("users-table.caption ". $users->count());
         });
     });
 </script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\laravelusers\App\Http\Controllers;
+namespace aaronrichards\laravelusers\App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -90,9 +90,7 @@ class UsersManagementController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'username'              => 'required|string|max:255|unique:users',
-            'firstname'             => 'required|string|max:255',
-            'lastname'              => 'required|string|max:255',
+            'name'                  => 'required|string|max:255',
             'email'                 => 'required|email|max:255|unique:users',
             'password'              => 'required|string|confirmed|min:6',
             'password_confirmation' => 'required|string|same:password',
@@ -103,14 +101,13 @@ class UsersManagementController extends Controller
         }
 
         $messages = [
-            'username.unique'     => trans('laravelusers::laravelusers.messages.userNameTaken'),
-            'username.required'   => trans('laravelusers::laravelusers.messages.userNameRequired'),
-            'email.required'      => trans('laravelusers::laravelusers.messages.emailRequired'),
-            'email.email'         => trans('laravelusers::laravelusers.messages.emailInvalid'),
-            'password.required'   => trans('laravelusers::laravelusers.messages.passwordRequired'),
-            'password.min'        => trans('laravelusers::laravelusers.messages.PasswordMin'),
-            'password.max'        => trans('laravelusers::laravelusers.messages.PasswordMax'),
-            'role.required'       => trans('laravelusers::laravelusers.messages.roleRequired'),
+            'name.required'       => 'userNameRequired',
+            'email.required'      => 'emailRequired',
+            'email.email'         => 'emailInvalid',
+            'password.required'   => 'passwordRequired',
+            'password.min'        => 'PasswordMin',
+            'password.max'        => 'PasswordMax',
+            'role.required'       => 'roleRequired',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -120,9 +117,7 @@ class UsersManagementController extends Controller
         }
 
         $user = config('laravelusers.defaultUserModel')::create([
-            'username'          => $request->input('username'),
-            'firstname'         => $request->input('firstname'),
-            'lastname'          => $request->input('lastname'),
+            'name'          => $request->input('name'),
             'email'             => $request->input('email'),
             'password'          => bcrypt($request->input('password')),
         ]);
@@ -132,7 +127,7 @@ class UsersManagementController extends Controller
             $user->save();
         }
 
-        return redirect('users')->with('success', trans('laravelusers::laravelusers.messages.user-creation-success'));
+        return redirect('users')->with('success', 'user-creation-success'));
     }
 
     /**
@@ -198,8 +193,7 @@ class UsersManagementController extends Controller
         $passwordCheck = $request->input('password') != null;
 
         $rules = [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
+            'name' => 'required|max:255',
         ];
 
         if ($emailCheck) {
@@ -221,8 +215,7 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $user->firstname = $request->input('firstname');
-        $user->lastname = $request->input('lastname');
+        $user->name = $request->input('name');
 
         if ($emailCheck) {
             $user->email = $request->input('email');
@@ -239,7 +232,7 @@ class UsersManagementController extends Controller
 
         $user->save();
 
-        return back()->with('success', trans('laravelusers::laravelusers.messages.update-user-success'));
+        return back()->with('success', 'update-user-success');
     }
 
     /**
@@ -257,10 +250,10 @@ class UsersManagementController extends Controller
         if ($currentUser->id != $user->id) {
             $user->delete();
 
-            return redirect('users')->with('success', trans('laravelusers::laravelusers.messages.delete-success'));
+            return redirect('users')->with('success', 'delete-success');
         }
 
-        return back()->with('error', trans('laravelusers::laravelusers.messages.cannot-delete-yourself'));
+        return back()->with('error', 'cannot-delete-yourself');
     }
 
     /**
@@ -291,7 +284,7 @@ class UsersManagementController extends Controller
         }
 
         $results = config('laravelusers.defaultUserModel')::where('id', 'like', $searchTerm.'%')
-                            ->orWhere('firstname', 'like', $searchTerm.'%')
+                            ->orWhere('name', 'like', $searchTerm.'%')
                             ->orWhere('email', 'like', $searchTerm.'%')->get();
 
         // Attach roles to results
