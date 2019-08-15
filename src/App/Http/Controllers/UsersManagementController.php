@@ -127,7 +127,7 @@ class UsersManagementController extends Controller
             $user->save();
         }
 
-        return redirect('users')->with('success', 'user-creation-success'));
+        return redirect('users')->with('success', 'user-creation-success');
     }
 
     /**
