@@ -51,7 +51,7 @@
                                                     @php $badgeClass = 'primary' @endphp
                                                 @elseif ($user_role->name == 'Admin')
                                                     @php $badgeClass = 'warning' @endphp
-                                                @elseif ($user_role->name == 'Unverified')
+                                                @elseif ($user_role->name == 'Disabled')
                                                     @php $badgeClass = 'danger' @endphp
                                                 @else
                                                     @php $badgeClass = 'dark' @endphp

@@ -53,13 +53,12 @@
                         </div>
 
                         @if($rolesEnabled)
-                        <div class="form-group has-feedback row {{ $errors->has('role') ? ' has-error ' : '' }}">
-                            
-                            <div class="col-md-9">
-                            <div class="input-group">
-                                <select class="custom-select form-control" name="role" id="role">
-                                    <option value="">Select User Role</option>
-                                    @if ($roles)
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">User Role</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="role">
+                                     @if ($roles)
                                         @foreach($roles as $role)
                                             @if ($currentRole)
                                                 <option value="{{ $role->id }}" {{ $currentRole->id == $role->id ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
@@ -69,18 +68,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <div class="input-group-append">
-                                    <label class="input-group-text" for="role">
-                                       Name
-                                    </label>
-                                </div>
-                            </div>
-                            @if ($errors->has('role'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('role') }}</strong>
-                                </span>
-                            @endif
-                            </div>
+                            </div>          
                         </div>
                         @endif
 

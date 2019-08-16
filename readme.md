@@ -1,7 +1,7 @@
 # Stock Laravel-Users | A Laravel Users CRUD Management
 
 ### About
-Laravel users is based off [aaronrichards/laravel-roles](https://github.com/jeremykenedy/laravel-users). Workd out the box with or without the following roles packages:
+Laravel users is based off [jeremykenedy/laravel-users](https://github.com/jeremykenedy/laravel-users). Workd out the box with or without the following roles packages:
 * [jeremykenedy/laravel-roles](https://github.com/jeremykenedy/laravel-roles)
 * [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 * [Zizaco/entrust](https://github.com/Zizaco/entrust)
