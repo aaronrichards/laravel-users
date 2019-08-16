@@ -43,17 +43,11 @@ class UsersManagementController extends Controller
      */
     public function index()
     {
-        $pagintaionEnabled = config('laravelusers.enablePagination');
-
-        if ($pagintaionEnabled) {
-            $users = config('laravelusers.defaultUserModel')::paginate(config('laravelusers.paginateListSize'));
-        } else {
-            $users = config('laravelusers.defaultUserModel')::all();
-        }
+       
+        $users = config('laravelusers.defaultUserModel')::paginate(25);
 
         $data = [
-            'users'             => $users,
-            'pagintaionEnabled' => $pagintaionEnabled,
+            'users'             => $users
         ];
 
         return view(config('laravelusers.showUsersBlade'), $data);
@@ -127,7 +121,7 @@ class UsersManagementController extends Controller
             $user->save();
         }
 
-        return redirect('users')->with('success', 'user-creation-success');
+        return redirect('users')->with('success', 'Successfully created user!');
     }
 
     /**
@@ -141,7 +135,7 @@ class UsersManagementController extends Controller
     {
         $user = config('laravelusers.defaultUserModel')::find($id);
 
-        return view(config('laravelusers.showIndividualUserBlade'))->withUser($user);
+        return view(config('laravelusers.showUserBlade'))->withUser($user);
     }
 
     /**
@@ -175,7 +169,7 @@ class UsersManagementController extends Controller
             $data['currentRole'] = $currentRole;
         }
 
-        return view(config('laravelusers.editIndividualUserBlade'))->with($data);
+        return view(config('laravelusers.editUserBlade'))->with($data);
     }
 
     /**
@@ -232,7 +226,7 @@ class UsersManagementController extends Controller
 
         $user->save();
 
-        return back()->with('success', 'update-user-success');
+        return back()->with('success', 'Successfully updated user!');
     }
 
     /**
@@ -250,10 +244,10 @@ class UsersManagementController extends Controller
         if ($currentUser->id != $user->id) {
             $user->delete();
 
-            return redirect('users')->with('success', 'delete-success');
+            return redirect('users')->with('success', 'Successfully deleted the user');
         }
 
-        return back()->with('error', 'cannot-delete-yourself');
+        return back()->with('error', 'You cannot delete yourself');
     }
 
 }

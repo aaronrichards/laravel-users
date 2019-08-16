@@ -84,7 +84,7 @@
     </div>
 
     
-    @include('laravelusers::scripts.toggleText')
+    <!-- @include('laravelusers::scripts.toggleText') -->
 
     @yield('scripts')
     @stack('scripts')

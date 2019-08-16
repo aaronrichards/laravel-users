@@ -1,4 +1,4 @@
-@extends(config('laravelusers.laravelUsersBladeExtended'))
+@extends(config('laravelusers.bladeLayout'))
 
 @section('styles')
     @include('laravelusers::partials.styles')
@@ -156,7 +156,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <button type="button" name="save-changes" class="btn btn-success btn-block margin-bottom-1 mt-3 mb-2 btn-save" data-toggle="modal" data-target="#confirmSave" data-title="Confirm Save" data-message="Please confirm your changes.">Create New User</button>
+                                <button type="button" name="save-changes" class="btn btn-success btn-block margin-bottom-1 mt-3 mb-2 btn-save" data-toggle="modal" data-target="#confirmSave" data-title="Confirm Save" data-message="Please confirm your changes.">Save</button>
                             </div>
                         </div>
                     

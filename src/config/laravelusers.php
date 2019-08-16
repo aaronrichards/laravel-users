@@ -8,21 +8,27 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    // The parent blade file
-    'laravelUsersBladeExtended'     => 'laravelusers::layouts.app',
+    // Blade templates
+    'bladeLayout'                   => 'laravelusers::layouts.app',
+    'showUsersBlade'                => 'laravelusers::usersmanagement.show-users',
+    'createUserBlade'               => 'laravelusers::usersmanagement.create-user',
+    'showUserBlade'                 => 'laravelusers::usersmanagement.show-user',
+    'editUserBlade'                 => 'laravelusers::usersmanagement.edit-user',
 
     // Enable `auth` middleware
     'authEnabled'                   => true,
 
-    // Enable Optional Roles Middleware on the users assignments
-    'rolesEnabled'                  => false,
+    // Default User Model
+    'defaultUserModel'              => 'App\User',
 
     /*
      | Enable Roles Middlware on the usability of this package.
      | This requires the middleware from the roles package to be registered in `App\Http\Kernel.php`
      | An Example: of roles middleware entry in protected `$routeMiddleware` array would be:
-     | 'role' => \aaronrichards\LaravelRoles\Middleware\VerifyRole::class,
+     | 'role' => \jeremykenedy\LaravelRoles\Middleware\VerifyRole::class,
      */
+
+    'rolesEnabled'                  => false,
 
     'rolesMiddlwareEnabled'         => true,
 
@@ -30,38 +36,6 @@ return [
     'rolesMiddlware'                => 'role:admin',
 
     // Optional Role Model
-    'roleModel'                     => 'aaronrichards\LaravelRoles\Models\Role',
-
-    // Laravel Default User Model
-    'defaultUserModel'              => 'App\User',
-
-    // Use the provided blade templates or extend to your own templates.
-    'showUsersBlade'                => 'laravelusers::usersmanagement.show-users',
-    'createUserBlade'               => 'laravelusers::usersmanagement.create-user',
-    'showIndividualUserBlade'       => 'laravelusers::usersmanagement.show-user',
-    'editIndividualUserBlade'       => 'laravelusers::usersmanagement.edit-user',
-
-    // Users List Pagination
-    'enablePagination'              => true,
-    'paginateListSize'              => 25,
-
-
-    // Bootstrap Tooltips
-    // 'tooltipsEnabled'               => true,
-    // 'enableBootstrapPopperJsCdn'    => true,
-    // 'bootstrapPopperJsCdn'          => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
-
-    // Extended blade options for packages app.blade.php
-    // 'enableBootstrapCssCdn'         => true,
-    // 'bootstrapCssCdn'               => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-
-    // 'enableBootstrapJsCdn'          => true,
-    // 'bootstrapJsCdn'                => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-
-    // 'enableAppJs'                   => true,
-    // 'appJsPublicFile'               => 'js/app.js',
-
-    // 'enablejQueryCdn'               => true,
-    // 'jQueryCdn'                     => 'https://code.jquery.com/jquery-3.3.1.min.js',
+    'roleModel'                     => 'jeremykenedy\LaravelRoles\Models\Role',
 
 ];

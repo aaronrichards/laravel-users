@@ -1,4 +1,4 @@
-@extends(config('laravelusers.laravelUsersBladeExtended'))
+@extends(config('laravelusers.bladeLayout'))
 
 @section('styles')
     @include('laravelusers::partials.styles')

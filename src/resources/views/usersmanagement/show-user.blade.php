@@ -1,4 +1,4 @@
-@extends(config('laravelusers.laravelUsersBladeExtended'))
+@extends(config('laravelusers.bladeLayout'))
 
 @section('template_title')
     showing-user {{$user->name}}

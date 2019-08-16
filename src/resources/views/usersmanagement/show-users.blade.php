@@ -1,4 +1,4 @@
-@extends(config('laravelusers.laravelUsersBladeExtended'))
+@extends(config('laravelusers.bladeLayout'))
 
 @section('styles')
     @include('laravelusers::partials.styles')
@@ -101,9 +101,7 @@
 
                             </table>
 
-                            @if($pagintaionEnabled)
-                                {{ $users->links() }}
-                            @endif
+                            {{ $users->links() }}
 
                         </div>
                     </div>
