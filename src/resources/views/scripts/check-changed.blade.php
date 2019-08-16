@@ -2,8 +2,6 @@
   $('.btn-change-pw').click(function(event) {
     event.preventDefault();
     $('.pw-change-container').slideToggle(100);
-    $(this).find('.fa').toggleClass('fa-times');
-    $(this).find('.fa').toggleClass('fa-lock');
     $(this).find('span').toggleText('', 'cancel');
   });
   $("input").keyup(function() {

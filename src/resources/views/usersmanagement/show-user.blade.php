@@ -11,13 +11,13 @@
 
 @section('content')
     <div class="container">
-        @if(config('laravelusers.enablePackageBootstapAlerts'))
+
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     @include('laravelusers::partials.form-status')
                 </div>
             </div>
-        @endif
+
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="card">
@@ -25,7 +25,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             showing-user-title {{$user->name}}
                             <div class="float-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="back-users">
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" title="back-users">
                                     back-to-users
                                 </a>
                             </div>
@@ -36,7 +36,7 @@
                             {{ $user->name }}
                         </h4>
                         @if($user->email)
-                            <p class="text-center" data-toggle="tooltip" data-placement="top" title="email-user {{$user->email}}">
+                            <p class="text-center" title="email-user {{$user->email}}">
                                 {{ Html::mailto($user->email, $user->email) }}
                             </p>
                         @endif
@@ -184,7 +184,4 @@
 
 @section('template_scripts')
     @include('laravelusers::scripts.delete-modal-script')
-    @if(config('laravelusers.tooltipsEnabled'))
-        @include('laravelusers::scripts.tooltips')
-    @endif
 @endsection

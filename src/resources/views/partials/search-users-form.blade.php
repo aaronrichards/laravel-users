@@ -7,14 +7,14 @@
             <div class="input-group mb-3">
 
                 <label for="user_search_box">Email address</label>
-                <input type="text" class="form-control" id="user_search_box" placeholder="forms.search-users-ph" aria-label="search-users-ph">
+                <input type="text" class="form-control" id="user_search_box" placeholder="Search Users" aria-label="Search Users">
 
                 <div class="input-group-append">
-                    <a href="#" class="btn btn-warning clear-search" data-toggle="tooltip" title="clear-search">
-                        clear-search
+                    <a href="#" class="btn btn-warning clear-search" title="Clear Search Results">
+                        Clear Search Results
                     </a>
                     
-                    <button id="confirm" type="submit" class="btn btn-secondary">submit-search</button>
+                    <button id="confirm" type="submit" class="btn btn-secondary">Submit Users Search</button>
                 </div>
             </div>
         </form>

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    edit_user__modal_text_confirm_title
+                    Confirm Save
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -12,12 +12,12 @@
             </div>
             <div class="modal-body">
                 <p>
-                    confirm_modal_title_text') !!}
+                    Please confirm your changes.
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left btn-flat" data-dismiss="modal">confirm_modal_button_cancel_text</button>
-                <button id="confirm" type="button" class="btn btn-success pull-right btn-flat">confirm_modal_button_save_text</button>
+                <button type="button" class="btn btn-outline pull-left btn-flat" data-dismiss="modal">Cancel</button>
+                <button id="confirm" type="button" class="btn btn-success pull-right btn-flat">Save Changes</button>
             </div>
         </div>
     </div>

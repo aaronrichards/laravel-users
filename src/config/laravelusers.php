@@ -9,7 +9,7 @@ return [
     */
 
     // The parent blade file
-    'laravelUsersBladeExtended'     => 'laravelusers::layouts.app', // 'layouts.app'
+    'laravelUsersBladeExtended'     => 'laravelusers::layouts.appp', // 'layouts.app'
 
     // Enable `auth` middleware
     'authEnabled'                   => true,
@@ -32,9 +32,6 @@ return [
     // Optional Role Model
     'roleModel'                     => 'aaronrichards\LaravelRoles\Models\Role',
 
-    // Enable Soft Deletes - Not yet setup - on the roadmap.
-    'softDeletedEnabled'            => false,
-
     // Laravel Default User Model
     'defaultUserModel'              => 'App\User',
 
@@ -44,9 +41,6 @@ return [
     'showIndividualUserBlade'       => 'laravelusers::usersmanagement.show-user',
     'editIndividualUserBlade'       => 'laravelusers::usersmanagement.edit-user',
 
-    // Use Package Bootstrap Flash Alerts
-    'enablePackageBootstapAlerts'   => true,
-
     // Users List Pagination
     'enablePagination'              => true,
     'paginateListSize'              => 25,
@@ -55,7 +49,7 @@ return [
     'enableSearchUsers'             => true,
 
     // Bootstrap Tooltips
-    'tooltipsEnabled'               => true,
+    // 'tooltipsEnabled'               => true,
     // 'enableBootstrapPopperJsCdn'    => true,
     // 'bootstrapPopperJsCdn'          => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
 
@@ -66,8 +60,8 @@ return [
     // 'enableBootstrapJsCdn'          => true,
     // 'bootstrapJsCdn'                => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
 
-    'enableAppJs'                   => true,
-    'appJsPublicFile'               => 'js/app.js',
+    // 'enableAppJs'                   => true,
+    // 'appJsPublicFile'               => 'js/app.js',
 
     // 'enablejQueryCdn'               => true,
     // 'jQueryCdn'                     => 'https://code.jquery.com/jquery-3.3.1.min.js',
