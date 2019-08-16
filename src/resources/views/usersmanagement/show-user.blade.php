@@ -3,49 +3,23 @@
 @section('content')
     <div class="container">
 
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    @include('laravelusers::partials.form-status')
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('laravelusers::partials.form-status')
             </div>
+        </div>
 
         <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="card">
+            <div class="col-md-12">
+                <div class="card mb-3">
+
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="col-md-6 d-flex align-items-center">
                             {{ $user->name }}'s Information
-                            <div class="float-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" title="back-users">
-                                    Back to Users
-                                </a>
-                            </div>
                         </div>
                     </div>
+                  
                     <div class="card-body">
-                        <h4 class="text-muted text-center">
-                            {{ $user->name }}
-                        </h4>
-                        @if($user->email)
-                            <p class="text-center" title="email-user {{$user->email}}">
-                                {{ Html::mailto($user->email, $user->email) }}
-                            </p>
-                        @endif
-                        <div class="row mb-4">
-                            <div class="col-3 offset-3 col-sm-4 offset-sm-2 col-md-4 offset-md-2 col-lg-3 offset-lg-3">
-                                <a href="/users/{{$user->id}}/edit" class="btn btn-block btn-md btn-warning">
-                                    Edit User
-                                </a>
-                            </div>
-                            <div class="col-3 col-sm-4 col-md-4 col-lg-3">
-                                <form method="POST" action="{{ route('user.destroy', $user->id) }}" class="form-inline">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <input name="delete-user" type="button" class="btn btn-danger btn-md btn-block'" value="Delete user" style="width: 100%;" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete {{ $user->name }}?">
-                                </form>
-                            </div>
-                        </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="row">
@@ -172,6 +146,34 @@
                 </div>
             </div>
         </div>
+
+        <!-- Block -->
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card text-center">
+
+                    <div class="card-body">
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12">
+                                <a href="{{ route('users') }}" class="btn btn-primary" title="back-users">Back to Users</a>    
+                                <a href="/users/{{$user->id}}/edit" class="btn btn-primary">Edit User</a>
+                                <form method="POST" action="{{ route('user.destroy', $user->id) }}" style="display: inline-block;">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <input name="delete-user" type="button" class="btn btn-primary" value="Delete user" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete {{ $user->name }}?">
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Block -->
+
     </div>
     @include('laravelusers::modals.modal-delete')
 @endsection

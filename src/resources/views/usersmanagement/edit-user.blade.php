@@ -1,74 +1,51 @@
 @extends(config('laravelusers.bladeLayout'))
 
-@section('styles')
-    @include('laravelusers::partials.styles')
-    @include('laravelusers::partials.bs-visibility-css')
-@endsection
-
 @section('content')
 <div class="container">
 
     <div class="row">
-        <div class="col-lg-10 offset-lg-1">
+        <div class="col-md-12">
             @include('laravelusers::partials.form-status')
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-            <div class="card">
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        Editing User {{ $user->name }}
-                        <div class="pull-right">
-                            <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" title="Back to users">
-                                Back to </span><span class="hidden-xs">Users</span>
-                            </a>
-                            <a href="{{ url('/users/' . $user->id) }}" class="btn btn-light btn-sm float-right" title="Back to users">
-                                Back  <span class="hidden-xs">to User</span>
-                            </a>
+    <form method="POST" action="{{ route('users.update', $user->id) }}" class="needs-validation">
+    @method('PATCH')
+    @csrf
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+
+                    <div class="card-header">
+                        <div class="col-md-6 d-flex align-items-center">
+                            Editing User {{ $user->name }}
                         </div>
                     </div>
-                </div>
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <form method="POST" action="{{ route('users.update', $user->id) }}" class="needs-validation">
-                    @method('PATCH')
-                    @csrf
-                    
-                        <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
-                            
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ $user->name }}">
-                                    <div class="input-group-append">
-                                        <label class="input-group-text" for="name">
-                                            Name
-                                        </label>
-                                    </div>
-                                </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" autofocus>
+
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group has-feedback row {{ $errors->has('email') ? ' has-error ' : '' }}">
-                            
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="User Email" value="{{ $user->email }}">
-                                    <div class="input-group-append">
-                                        <label for="email" class="input-group-text">
-                                            User Email
-                                        </label>
-                                    </div>
-                                </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" autofocus>
+
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -107,74 +84,66 @@
                         </div>
                         @endif
 
-                        <div class="pw-change-container">
-                            <div class="form-group has-feedback row {{ $errors->has('password') ? ' has-error ' : '' }}">
-                                
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
-                                        <div class="input-group-append">
-                                            <label class="input-group-text" for="password">
-                                                Password
-                                            </label>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autofocus>
 
-                            <div class="form-group has-feedback row {{ $errors->has('password_confirmation') ? ' has-error ' : '' }}">
-                                
-                                <div class="col-md-9">
-                                    <div class="input-group">
-
-                                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password">
-                                        <div class="input-group-append">
-                                            <label class="input-group-text" for="password_confirmation">
-                                                Confirm Password
-                                            </label>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-2">
-                                <a href="#" class="btn btn-outline-secondary btn-block btn-change-pw mt-3" title="change-pw">
-                                    Change Password
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <button type="button" name="save-changes" class="btn btn-success btn-block margin-bottom-1 mt-3 mb-2 btn-save" data-toggle="modal" data-target="#confirmSave" data-title="Confirm Save" data-message="Please confirm your changes.">Save</button>
+                        <div class="form-group row">
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password_confirmation" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" autofocus>
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                    
-                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block -->
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card text-center">
+
+                    <div class="card-body">
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12">
+                                <a href="{{ route('users') }}" class="btn btn-primary" title="back-users">Back to Users</a>    
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">Back  <span class="hidden-xs">to User</span></a>
+                                <button type="button" name="save-changes" class="btn btn-primary btn-save" data-toggle="modal" data-target="#confirmSave" data-title="Confirm Save" data-message="Please confirm your changes.">Save</button>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
-    </div>
+        <!-- End Block -->
+
+    </form>
 </div>
 
 @include('laravelusers::modals.modal-save')
-@include('laravelusers::modals.modal-delete')
 
 @endsection
 
 @section('scripts')
-    @include('laravelusers::scripts.delete-modal-script')
     @include('laravelusers::scripts.save-modal-script')
-    @include('laravelusers::scripts.check-changed')
 @endsection

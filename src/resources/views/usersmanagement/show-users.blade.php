@@ -4,7 +4,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-12">
             @include('laravelusers::partials.form-status')
         </div>
     </div>
@@ -13,100 +13,84 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                        <span id="card_title">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center">
                             Showing All Users
-                        </span>
-
-                        <div class="btn-group pull-right btn-group-xs">
-                            <a href="{{ route('users.create') }}" class="btn btn-default btn-sm pull-right" title="New User">
-                                New User
-                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('users.create') }}" class="btn btn-primary float-sm-right">Create a new user</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
 
-                    <div class="table-responsive users-table">
-                        <table class="table table-striped table-sm data-table">
-                            <caption id="user_count">
-                                {{ $users->count() }} total users
-                            </caption>
-                            <thead class="thead">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col" class="hidden-xs">Email</th>
+                                @if(config('laravelusers.rolesEnabled'))
+                                    <th scope="col" class="hidden-sm hidden-xs">Role</th>
+                                @endif
+                                <th scope="col" class="hidden-sm hidden-xs hidden-md">Created</th>
+                                <th scope="col" class="hidden-sm hidden-xs hidden-md">Updated</th>
+                                <th scope="col" class="no-search no-sort">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users_table">
+                            @foreach($users as $user)
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th class="hidden-xs">Email</th>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td class="hidden-xs">{{$user->email}}</td>
                                     @if(config('laravelusers.rolesEnabled'))
-                                        <th class="hidden-sm hidden-xs">Role</th>
+                                        <td class="hidden-sm hidden-xs">
+                                            @foreach ($user->roles as $user_role)
+                                                @if ($user_role->name == 'User')
+                                                    @php $badgeClass = 'primary' @endphp
+                                                @elseif ($user_role->name == 'Admin')
+                                                    @php $badgeClass = 'warning' @endphp
+                                                @elseif ($user_role->name == 'Unverified')
+                                                    @php $badgeClass = 'danger' @endphp
+                                                @else
+                                                    @php $badgeClass = 'dark' @endphp
+                                                @endif
+                                                <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
+                                            @endforeach
+                                        </td>
                                     @endif
-                                    <th class="hidden-sm hidden-xs hidden-md">Created</th>
-                                    <th class="hidden-sm hidden-xs hidden-md">Updated</th>
-                                    <th class="no-search no-sort">Actions</th>
-                                    <th class="no-search no-sort"></th>
-                                    <th class="no-search no-sort"></th>
+                                    <td class="hidden-sm hidden-xs hidden-md">{{$user->created_at}}</td>
+                                    <td class="hidden-sm hidden-xs hidden-md">{{$user->updated_at}}</td>
+                                    <td>
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('users.show', $user->id) }}" title="show'">Show</a>
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('users.edit', $user->id) }}" title="edit">Edit</a>
+       
+                                        <form method="POST" action="{{ route('user.destroy', $user->id) }}" style="display: inline-block;">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <input name="delete" type="button" class="btn btn-outline-primary btn-sm" value="Delete" data-toggle="modal" data-target="#confirmDelete" data-title="Delete" data-message="Are you sure you want to delete {{ $user->name }}">
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody id="users_table">
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td class="hidden-xs">{{$user->email}}</td>
-                                        @if(config('laravelusers.rolesEnabled'))
-                                            <td class="hidden-sm hidden-xs">
-                                                @foreach ($user->roles as $user_role)
-                                                    @if ($user_role->name == 'User')
-                                                        @php $badgeClass = 'primary' @endphp
-                                                    @elseif ($user_role->name == 'Admin')
-                                                        @php $badgeClass = 'warning' @endphp
-                                                    @elseif ($user_role->name == 'Unverified')
-                                                        @php $badgeClass = 'danger' @endphp
-                                                    @else
-                                                        @php $badgeClass = 'dark' @endphp
-                                                    @endif
-                                                    <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
-                                                @endforeach
-                                            </td>
-                                        @endif
-                                        <td class="hidden-sm hidden-xs hidden-md">{{$user->created_at}}</td>
-                                        <td class="hidden-sm hidden-xs hidden-md">{{$user->updated_at}}</td>
-                                        <td>
-                                            <form method="POST" action="{{ route('user.destroy', $user->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
+                            @endforeach
+                        </tbody>
 
-                                                <input name="delete" type="button" class="btn btn-danger btn-sm" value="Delete user" style="width: 100%;" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete {{ $user->name }}">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-sm btn-success btn-block" href="{{ URL::to('users/' . $user->id) }}" title="show'">
-                                                Show
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-sm btn-info btn-block" href="{{ URL::to('users/' . $user->id . '/edit') }}" title="edit">
-                                                Edit
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                    </table>
+                
 
-                            </table>
-
-                            {{ $users->links() }}
-
-                        </div>
+                    <div class="text-center">
+                        {{ $users->links() }}
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
-    @include('laravelusers::modals.modal-delete')
+@include('laravelusers::modals.modal-delete')
 
 @endsection
 
