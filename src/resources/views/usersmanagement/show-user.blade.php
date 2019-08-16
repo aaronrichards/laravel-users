@@ -1,14 +1,5 @@
 @extends(config('laravelusers.bladeLayout'))
 
-@section('template_title')
-    showing-user {{$user->name}}
-@endsection
-
-@section('styles')
-    @include('laravelusers::partials.styles')
-    @include('laravelusers::partials.bs-visibility-css')
-@endsection
-
 @section('content')
     <div class="container">
 

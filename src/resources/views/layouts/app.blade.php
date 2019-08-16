@@ -83,9 +83,6 @@
         </main>
     </div>
 
-    
-    <!-- @include('laravelusers::scripts.toggleText') -->
-
     @yield('scripts')
     @stack('scripts')
 

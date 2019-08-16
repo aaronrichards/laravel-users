@@ -1,10 +1,5 @@
 @extends(config('laravelusers.bladeLayout'))
 
-@section('styles')
-    @include('laravelusers::partials.styles')
-    @include('laravelusers::partials.bs-visibility-css')
-@endsection
-
 @section('content')
 <div class="container">
 
