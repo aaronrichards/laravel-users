@@ -1,6 +1,6 @@
 {
-    "name": "aaronrichards/laravel-users",
-    "description": "Laravel Users Management CRUD Package",
+    "name": "aaronrichards/laravel-users-crud",
+    "description": "Laravel User Management",
     "keywords": ["laravel", "users", "management", "CRUD"],
     "license": "MIT",
     "type": "package",
@@ -18,15 +18,8 @@
             "aaronrichards\\laravelusers\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "aaronrichards\\laravelusers\\Test\\": "tests/"
-        }
-    },
     "require-dev": {
         "illuminate/support": "^5.7",
-        "orchestra/testbench": "~3.0",
-        "phpunit/phpunit": "^7.0",
         "laravel/laravel": "5.7.*"
     },
     "extra": {
