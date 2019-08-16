@@ -16,7 +16,3 @@ Route::group(['middleware' => 'web', 'namespace' => 'aaronrichards\laravelusers\
         ],
     ]);
 });
-
-Route::middleware(['web', 'auth'])->group(function () {
-    Route::post('search-users', 'aaronrichards\laravelusers\app\Http\Controllers\UsersManagementController@search')->name('search-users');
-});

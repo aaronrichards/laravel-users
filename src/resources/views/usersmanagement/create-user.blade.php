@@ -1,6 +1,6 @@
 @extends(config('laravelusers.laravelUsersBladeExtended'))
 
-@section('template_linked_css')
+@section('styles')
     @include('laravelusers::partials.styles')
     @include('laravelusers::partials.bs-visibility-css')
 @endsection

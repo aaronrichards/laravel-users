@@ -1,6 +1,6 @@
 @extends(config('laravelusers.laravelUsersBladeExtended'))
 
-@section('template_linked_css')
+@section('styles')
     @include('laravelusers::partials.styles')
     @include('laravelusers::partials.bs-visibility-css')
 @endsection
@@ -173,7 +173,7 @@
 
 @endsection
 
-@section('template_scripts')
+@section('scripts')
     @include('laravelusers::scripts.delete-modal-script')
     @include('laravelusers::scripts.save-modal-script')
     @include('laravelusers::scripts.check-changed')

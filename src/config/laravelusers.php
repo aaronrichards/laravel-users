@@ -9,7 +9,7 @@ return [
     */
 
     // The parent blade file
-    'laravelUsersBladeExtended'     => 'laravelusers::layouts.appp', // 'layouts.app'
+    'laravelUsersBladeExtended'     => 'laravelusers::layouts.app',
 
     // Enable `auth` middleware
     'authEnabled'                   => true,
@@ -45,8 +45,6 @@ return [
     'enablePagination'              => true,
     'paginateListSize'              => 25,
 
-    // Enable Search Users- Uses jQuery Ajax
-    'enableSearchUsers'             => true,
 
     // Bootstrap Tooltips
     // 'tooltipsEnabled'               => true,

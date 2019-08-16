@@ -1,6 +1,6 @@
 @extends(config('laravelusers.laravelUsersBladeExtended'))
 
-@section('template_linked_css')
+@section('styles')
     @include('laravelusers::partials.styles')
     @include('laravelusers::partials.bs-visibility-css')
 @endsection
@@ -32,10 +32,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-
-                    @if(config('laravelusers.enableSearchUsers'))
-                        @include('laravelusers::partials.search-users-form')
-                    @endif
 
                     <div class="table-responsive users-table">
                         <table class="table table-striped table-sm data-table">
@@ -82,7 +78,7 @@
                                         <td class="hidden-sm hidden-xs hidden-md">{{$user->created_at}}</td>
                                         <td class="hidden-sm hidden-xs hidden-md">{{$user->updated_at}}</td>
                                         <td>
-                                            <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                                            <form method="POST" action="{{ route('user.destroy', $user->id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
@@ -102,9 +98,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                                @if(config('laravelusers.enableSearchUsers'))
-                                    <tbody id="search_results"></tbody>
-                                @endif
+
                             </table>
 
                             @if($pagintaionEnabled)
@@ -123,10 +117,7 @@
 
 @endsection
 
-@section('template_scripts')
+@section('scripts')
     @include('laravelusers::scripts.delete-modal-script')
     @include('laravelusers::scripts.save-modal-script')
-    @if(config('laravelusers.enableSearchUsers'))
-        @include('laravelusers::scripts.search-users')
-    @endif
 @endsection
